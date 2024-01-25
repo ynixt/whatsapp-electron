@@ -1,0 +1,1 @@
+Tired of WhatsApp bad app on MS Store? Use this :)
