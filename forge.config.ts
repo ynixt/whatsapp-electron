@@ -9,10 +9,31 @@ import { rendererConfig } from './webpack.renderer.config';
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
-    icon: 'icon'
+    icon: 'icon',
+    extraResource: [
+      'icon.png',
+      'icon.ico'
+    ]
   },
   rebuildConfig: {},
-  makers: [new MakerZIP({}, ['win32'])],
+  makers: [
+    new MakerZIP({}, ['win32']),
+    {
+      name: '@electron-forge/maker-deb',
+        config: {
+          options: {
+            icon: 'icon.png',
+            categories: ['Network'],
+            description: 'A wrapper for WhatsApp web',
+            productDescription: 'A wrapper for WhatsApp web',
+            name: 'whatsapp-electron',
+            productName: 'WhatsApp',
+            homepage: 'https://github.com/ynixt/whatsapp-electron',
+            maintainer: 'Ynixt'
+          }
+      }
+    }
+  ],
   plugins: [
     new AutoUnpackNativesPlugin({}),
     new WebpackPlugin({
